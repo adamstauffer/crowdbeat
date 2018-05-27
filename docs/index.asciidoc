@@ -1,0 +1,5 @@
+= Crowdbeat Docs
+
+Welcome to the Crowdbeat documentation.
+
+

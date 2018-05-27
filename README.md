@@ -1,11 +1,42 @@
 # Crowdbeat
 
-Welcome to Crowdbeat.
+Provides a [Beat](https://www.elastic.co/products/beats) that processes
+audit logs from an [Atlassian Crowd](https://www.atlassian.com/software/crowd) instance.
 
-Ensure that this folder is at the following location:
-`${GOPATH}/src/github.com/adamstauffer/crowdbeat`
+## Configuration
 
-## Getting Started with Crowdbeat
+See [crowdbeat.yml](https://github.com/adamstauffer/crowdbeat/tree/master/crowdbeat.yml) for a sample configuration file.
+
+```yaml
+crowdbeat:
+  # Defines how after audit logs are polled
+  period: 10m
+  #crowd_url: https://crowd.company.com/crowd
+  #crowd_username: crowdadmin
+  #crowd_password: password
+```
+
+You'll need to provide the URL to your Crowd instance, along with an
+administrator username and password that can access the audit logs.
+
+Audit logs are queried for the time defined in the `period`. This is based on
+the current system time, so it is recommended that `Crowdbeat` runs on the
+same server as Crowd.
+
+**DISCLAIMER** - The Crowd Audit log API is currently experimental and subject
+to change. This beat was written for [Crowd version 3.2.1](https://docs.atlassian.com/atlassian-crowd/3.2.1/REST/#admin/1.0/auditlog-searchAuditLog). Later versions of Crowd may alter the API, which
+will lead to incompatibility with `Crowdbeat`.
+
+
+## Run
+
+To run Crowdbeat with debugging output enabled, run:
+
+```
+./crowdbeat -c crowdbeat.yml -e -d "*"
+```
+
+## Compiling from scratch
 
 ### Requirements
 
@@ -38,80 +69,3 @@ in the same directory with the name crowdbeat.
 ```
 make
 ```
-
-
-### Run
-
-To run Crowdbeat with debugging output enabled, run:
-
-```
-./crowdbeat -c crowdbeat.yml -e -d "*"
-```
-
-
-### Test
-
-To test Crowdbeat, run the following command:
-
-```
-make testsuite
-```
-
-alternatively:
-```
-make unit-tests
-make system-tests
-make integration-tests
-make coverage-report
-```
-
-The test coverage is reported in the folder `./build/coverage/`
-
-### Update
-
-Each beat has a template for the mapping in elasticsearch and a documentation for the fields
-which is automatically generated based on `fields.yml` by running the following command.
-
-```
-make update
-```
-
-
-### Cleanup
-
-To clean  Crowdbeat source code, run the following commands:
-
-```
-make fmt
-make simplify
-```
-
-To clean up the build directory and generated artifacts, run:
-
-```
-make clean
-```
-
-
-### Clone
-
-To clone Crowdbeat from the git repository, run the following commands:
-
-```
-mkdir -p ${GOPATH}/src/github.com/adamstauffer/crowdbeat
-git clone https://github.com/adamstauffer/crowdbeat ${GOPATH}/src/github.com/adamstauffer/crowdbeat
-```
-
-
-For further development, check out the [beat developer guide](https://www.elastic.co/guide/en/beats/libbeat/current/new-beat.html).
-
-
-## Packaging
-
-The beat frameworks provides tools to crosscompile and package your beat for different platforms. This requires [docker](https://www.docker.com/) and vendoring as described above. To build packages of your beat, run the following command:
-
-```
-make package
-```
-
-This will fetch and create all images required for the build process. The whole process to finish can take several minutes.

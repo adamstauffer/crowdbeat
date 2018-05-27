@@ -1,0 +1,81 @@
+- key: crowdbeat
+  title: crowdbeat
+  description:
+  fields:
+    - name: counter
+      type: long
+      required: true
+      description: >
+        PLEASE UPDATE DOCUMENTATION
+    - name: id
+      type: long
+      required: true
+      description: Audit event ID
+    - name: author
+      type: object
+      required: true
+      description: Author who performed the action
+    - name: author.Id
+      type: long
+      requird: false
+      description: Database ID of the author
+    - name: author.Name
+      type: keyword
+      required: false
+      description: Name of the author
+    - name: author.Type
+      type: keyword
+      required: false
+      description: Type of author such as user or system
+    - name: event_type
+      type: keyword
+      required: true
+      description: Type of action performed
+    - name: entities
+      type: nested
+      required: true
+      description: The entities affected by the action
+    - name: entities.Id
+      type: long
+      requird: false
+      description: Database ID of the entity
+    - name: entities.Name
+      type: keyword
+      required: false
+      description: Name of the entity
+    - name: entities.Type
+      type: keyword
+      required: false
+      description: Type of the entity such as user or directory
+    - name: entities.SubType
+      type: keyword
+      required: false
+      description: Subtype of the entity such as JIRA
+    - name: entities.Primary
+      type: boolean
+      required: false
+      description: Whether this was the primary entity that was altered
+    - name: ip_address
+      type : ip
+      required: true
+      description: IP address of where the action was performed
+    - name: event_message
+      type: text
+      required: true
+      description: Message describing the action
+    - name: entries
+      type: nested
+      required: true
+      description: Changes recorded by the action
+    - name: entries.PropertyName
+      type: keyword
+      required: false
+      description: The property that was aletered on the entry
+    - name: entries.OldValue
+      type: text
+      required: false
+      description: The old value before alteration
+    - name: entries.NewValue
+      type: text
+      required: false
+      description: The new value after alteration

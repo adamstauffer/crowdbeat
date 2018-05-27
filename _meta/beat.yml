@@ -1,0 +1,7 @@
+################### Crowdbeat Configuration Example #########################
+
+############################# Crowdbeat ######################################
+
+crowdbeat:
+  # Defines how after audit logs are polled
+  period: 10m

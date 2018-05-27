@@ -1,0 +1,9 @@
+/.idea
+/build
+
+.DS_Store
+/crowdbeat
+/crowdbeat.test
+*.pyc
+
+crowdbeat.yml.testing
