@@ -49,11 +49,9 @@ func (bt *Crowdbeat) Run(b *beat.Beat) error {
 		}
 
 		// process new audit events
-		// startDateTime := time.Now().Add(
-		// 	-bt.config.Period).Format("2006-01-02T15:04:05.999-0700")
-		// endDateTime := time.Now().Format("2006-01-02T15:04.999-0700")
-		startDateTime := "2018-04-23T11:30:00.000-0400"
-		endDateTime := "2018-05-25T11:30:00.000-0400"
+		startDateTime := time.Now().Add(
+			-bt.config.Period).Format("2006-01-02T15:04:05.999-0700")
+		endDateTime := time.Now().Format("2006-01-02T15:04.999-0700")
 		logp.Info("Requesting audit events between %v and %v",
 			startDateTime, endDateTime)
 

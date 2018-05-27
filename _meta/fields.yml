@@ -2,11 +2,6 @@
   title: crowdbeat
   description:
   fields:
-    - name: counter
-      type: long
-      required: true
-      description: >
-        PLEASE UPDATE DOCUMENTATION
     - name: id
       type: long
       required: true

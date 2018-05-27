@@ -7,9 +7,9 @@ import "time"
 
 type Config struct {
 	Period        time.Duration `config:"period"`
-    CrowdUrl      string        `config:"crowd_url"`
-    CrowdUsername string        `config:"crowd_username"`
-    CrowdPassword string        `config:"crowd_password"`
+	CrowdUrl      string        `config:"crowd_url"`
+	CrowdUsername string        `config:"crowd_username"`
+	CrowdPassword string        `config:"crowd_password"`
 }
 
 var DefaultConfig = Config{
