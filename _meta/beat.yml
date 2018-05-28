@@ -5,3 +5,6 @@
 crowdbeat:
   # Defines how after audit logs are polled
   period: 10m
+  #crowd_url: https://crowd.company.com
+  #crowd_username: crowdadmin
+  #crowd_password: password
